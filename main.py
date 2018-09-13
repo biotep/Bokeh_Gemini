@@ -3,7 +3,7 @@ from os.path import dirname, join
 import pandas as pd
 from bokeh.io import curdoc
 from bokeh.layouts import row, column
-from bokeh.models import ColumnDataSource, Slope
+from bokeh.models import ColumnDataSource
 from bokeh.models.widgets import PreText, Select, TextInput, Button, Div
 from bokeh.plotting import figure
 import os
@@ -22,8 +22,9 @@ ib_downloader = config['IB']['IB_downloader']
 
 script = server_document(server)
 
+
 print("history_dir: ", history_dir)
-print(script)
+print("script: ", script)
 
 DEFAULT_TICKERS=[]
 
