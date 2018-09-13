@@ -11,10 +11,12 @@ import numpy as np
 import bokeh.palettes as bk_pal
 from subprocess import call
 from bokeh.embed import server_document
-script = server_document("http://localhost:5006/Bokeh_Gemini")
+script = server_document("http://172.26.8.26:5000/Bokeh_Gemini")
+history_dir = app.config['IBIS_HOME'] + '/historical/'
+print("history_dir: ", history_dir)
 print(script)
 
-history_dir = '/Users/Uriel/Documents/Python/Ibis/historical/'
+history_dir = '/home/aries/ibis/historical/'
 DEFAULT_TICKERS=[]
 
 def collect_downloaded_symbols():
@@ -30,7 +32,7 @@ def collect_downloaded_symbols():
 def download_from_ib(symbol):
     global DEFAULT_TICKERS
     print("downloading: ", symbol)
-    call(["/Users/Uriel/Documents/Python/Ibis/ibisweb/download_from_ib.py", symbol])
+    call(["/home/aries/ibis/ibisweb/download_from_ib.py", symbol])
     DEFAULT_TICKERS = collect_downloaded_symbols()
     ticker1.options = DEFAULT_TICKERS
     ticker2.options = DEFAULT_TICKERS
