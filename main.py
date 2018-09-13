@@ -18,13 +18,13 @@ config.read('../config.ini')
 
 history_dir = config['History directory']['history_dir']
 server = config['Server']['server_document']
+ib_downloader = config['IB']['IB_downloader']
 
 script = server_document(server)
-history_dir = app.config['IBIS_HOME'] + '/historical/'
+
 print("history_dir: ", history_dir)
 print(script)
 
-history_dir = '/home/aries/ibis/historical/'
 DEFAULT_TICKERS=[]
 
 def collect_downloaded_symbols():
@@ -40,7 +40,7 @@ def collect_downloaded_symbols():
 def download_from_ib(symbol):
     global DEFAULT_TICKERS
     print("downloading: ", symbol)
-    call(["/home/aries/ibis/ibisweb/download_from_ib.py", symbol])
+    call([ib_downloader, symbol])
     DEFAULT_TICKERS = collect_downloaded_symbols()
     ticker1.options = DEFAULT_TICKERS
     ticker2.options = DEFAULT_TICKERS
