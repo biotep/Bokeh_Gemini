@@ -11,7 +11,15 @@ import numpy as np
 import bokeh.palettes as bk_pal
 from subprocess import call
 from bokeh.embed import server_document
-script = server_document("http://172.26.8.26:5000/Bokeh_Gemini")
+import configparser
+config = configparser.ConfigParser()
+config.read('../config.ini')
+
+
+history_dir = config['History directory']['history_dir']
+server = config['Server']['server_document']
+
+script = server_document(server)
 history_dir = app.config['IBIS_HOME'] + '/historical/'
 print("history_dir: ", history_dir)
 print(script)
